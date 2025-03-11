@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Facts</title>
+    <style>
+        body {
+            background-color: #e0f7e0; /* Light green background */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            font-size: 1.5em;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        .share-buttons a {
+            margin: 10px;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crocodile Facts</h1>
+        <div id="factDisplay" class="fact-display"></div>
+        <button id="newFactButton">Show Random Fact</button>
+        <div class="share-buttons">
+            <a href="#" id="twitterShare">Share on Twitter</a>
+            <a href="#" id="instagramShare">Share on Instagram</a>
+        </div>
+    </div>
+    <script>
+        const crocodileFacts = [
+            "Crocodiles can live for over 70 years in the wild.",
+            "They are more closely related to birds than to lizards.",
+            "Crocodiles can hold their breath underwater for up to an hour.",
+            "They have powerful jaws that can exert a bite force of over 3,000 pounds per square inch.",
+            "Crocodiles are cold-blooded reptiles, which means they rely on external temperatures to regulate their body heat.",
+            "They can swim at speeds of up to 20 miles per hour in short bursts.",
+            "Crocodiles have a special valve in their throat that allows them to open their mouths underwater without drowning.",
+            "They are known to be very territorial and will defend their territory aggressively.",
+            "Crocodiles can consume large prey, including deer and even smaller crocodiles.",
+            "They have excellent night vision, allowing them to hunt effectively in low light.",
+            "Crocodiles can produce a wide range of vocalizations, including growls, hisses, and bellows.",
+            "Female crocodiles build nests and can lay between 20 to 80 eggs at a time.",
+            "The temperature of the nest determines the sex of the hatchlings; warmer temperatures produce males, while cooler temperatures produce females.",
+            "Crocodiles have been around for over 200 million years, making them one of the oldest living species.",
+            "They can run on land at speeds of up to 11 miles per hour for short distances."
+        ];
+
+        document.getElementById('newFactButton').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * crocodileFacts.length);
+            const fact = crocodileFacts[randomIndex];
+            const factDisplay = document.getElementById('factDisplay');
+            factDisplay.style.opacity = 0; // Fade out
+            setTimeout(() => {
+                factDisplay.textContent = fact;
+                factDisplay.style.opacity = 1; // Fade in
+            }, 500);
+        });
+
+        // Share functionality
+        document.getElementById('twitterShare').addEventListener('click', function() {
+            const fact = document.getElementById('factDisplay').textContent;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
+            window.open(url, '_blank');
+        });
+
+        document.getElementById('instagramShare').addEventListener('click', function() {
+            alert("Instagram sharing is not directly supported via URL. Please share manually.");
+        });
+    </script>
+</body>
+</html>
